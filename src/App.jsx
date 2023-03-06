@@ -14,7 +14,7 @@ function App() {
     setForm("");
     setIsFormDisabled(false);
     setIsButtonDisabled(true);
-    setTime(5);
+    setTime(15);
     setWordCount(0);
     setIsTimeRunning(true);
   }
