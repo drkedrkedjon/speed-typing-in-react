@@ -3,7 +3,7 @@ import React from "react";
 function App() {
   const [form, setForm] = React.useState("");
   const [wordCount, setWordCount] = React.useState(0);
-  const [time, setTime] = React.useState(15);
+  const [time, setTime] = React.useState(10);
   const [isTimeRunning, setIsTimeRunning] = React.useState(false);
   const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
@@ -14,7 +14,7 @@ function App() {
     setForm("");
     setIsFormDisabled(false);
     setIsButtonDisabled(true);
-    setTime(15);
+    setTime(10);
     setWordCount(0);
     setIsTimeRunning(true);
   }
@@ -54,7 +54,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>How fast can you type in {time}sec.?</h1>
+      <h1>How fast can you type in 10sec.?</h1>
       <textarea
         ref={formRef}
         disabled={isFormDisabled}
