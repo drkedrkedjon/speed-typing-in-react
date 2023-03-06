@@ -7,6 +7,8 @@ function App() {
   const [isTimeRunning, setIsTimeRunning] = React.useState(false);
   const [isFormDisabled, setIsFormDisabled] = React.useState(true);
   const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+  const formRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
 
   function startGame() {
     setForm("");
@@ -21,6 +23,9 @@ function App() {
     wordCounter(form);
     setIsFormDisabled(true);
     setIsButtonDisabled(false);
+    setTimeout(() => {
+      buttonRef.current.focus();
+    }, 3000);
     setIsTimeRunning(false);
   }
 
@@ -38,6 +43,7 @@ function App() {
 
   React.useEffect(() => {
     if (time > 0 && isTimeRunning) {
+      formRef.current.focus();
       setTimeout(() => {
         setTime((oldTime) => oldTime - 1);
       }, 1000);
@@ -49,10 +55,20 @@ function App() {
   return (
     <div className="container">
       <h1>How fast do you type?</h1>
-      <textarea disabled={isFormDisabled} value={form} onChange={handleForm} />
+      <textarea
+        ref={formRef}
+        disabled={isFormDisabled}
+        value={form}
+        onChange={handleForm}
+      />
       <h3>Time remaning: {time}</h3>
-      <button disabled={isButtonDisabled} onClick={startGame}>
-        START
+      <button
+        autoFocus={true}
+        ref={buttonRef}
+        disabled={isButtonDisabled}
+        onClick={startGame}
+      >
+        {isTimeRunning ? "TYPE NOW" : "START"}
       </button>
       <h2>Word Count: {wordCount}</h2>
     </div>
